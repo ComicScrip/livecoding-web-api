@@ -8,6 +8,15 @@ function geoFindMe() {
         const longitude = position.coords.longitude;
 
         coordinatesElement.textContent = `latitude : ${latitude}, longitude : ${longitude}`;
+
+        let map = L.map('map', {
+            center: [latitude, longitude],
+            zoom: 13
+        })
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.marker([latitude, longitude]).addTo(map);
     }
 
     function error() {
